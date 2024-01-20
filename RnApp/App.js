@@ -4,9 +4,11 @@ import React from "react";
 import { FlexBoxScreen } from './src/flexboxExercise';
 import DimentionsExercise from './src/dimentionsExercise';
 import ButtonAlert from './src/Button-Alert';
-import StatusBarTest from './src/StatusBarTest.js';
+//import StatusBarTest from './src/StatusBarTest.js';
 import SwitchTest from './src/SwitchTest';
 import LoadingCircle from './src/LoadingCircle';
+import ImageTest from './src/ImageTest';
+import TextInputTest from './src/TextInputTest';
 
 
 export default function App() {
@@ -17,9 +19,10 @@ export default function App() {
     //   <TextInput style={{backgroundColor:'#1f1'}}>122</TextInput>
     //<DimentionsExercise/>
     //<ButtonAlert></ButtonAlert>
-    
-    
-    <LoadingCircle/>
+    //<LoadingCircle/>
+    //<ImageTest></ImageTest>
+    <TextInputTest></TextInputTest>
+
     
     
 
