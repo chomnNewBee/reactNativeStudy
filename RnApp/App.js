@@ -1,17 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import React from "react";
+import { FlexBoxScreen } from './src/flexboxExercise';
+import DimentionsExercise from './src/dimentionsExercise';
+import ButtonAlert from './src/Button-Alert';
+import StatusBarTest from './src/StatusBarTest.js';
+import SwitchTest from './src/SwitchTest';
+import LoadingCircle from './src/LoadingCircle';
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.color}>HelloReact Native</Text>
-      <Text style = {{fontSize:30}}>hello 233</Text>
-      <TextInput style={{backgroundColor:'#1f1'}}>122</TextInput>
+    // <View style={styles.container}>
+    //   <Text style={styles.color}>HelloReact Native</Text>
+    //   <Text style = {{fontSize:30}}>hello 233</Text>
+    //   <TextInput style={{backgroundColor:'#1f1'}}>122</TextInput>
+    //<DimentionsExercise/>
+    //<ButtonAlert></ButtonAlert>
+    
+    
+    <LoadingCircle/>
+    
+    
 
 
-    </View>
-  );
+    // </View>
+  )
 }
 
 const styles = StyleSheet.create({
