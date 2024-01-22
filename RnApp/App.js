@@ -1,19 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import React from "react";
-import { FlexBoxScreen } from './src/flexboxExercise';
-import DimentionsExercise from './src/dimentionsExercise';
-import ButtonAlert from './src/Button-Alert';
+// import { FlexBoxScreen } from './src/flexboxExercise';
+// import DimentionsExercise from './src/dimentionsExercise';
+// import ButtonAlert from './src/Button-Alert';
 //import StatusBarTest from './src/StatusBarTest.js';
-import SwitchTest from './src/SwitchTest';
-import LoadingCircle from './src/LoadingCircle';
-import ImageTest from './src/ImageTest';
-import TextInputTest from './src/TextInputTest';
-import TouchableTest from './src/touchableTest';
-import ScrollViewTest from './src/ScrollViewTest';
-import FlatListDemo from './src/FlatListDemo';
+// import SwitchTest from './src/SwitchTest';
+// import LoadingCircle from './src/LoadingCircle';
+// import ImageTest from './src/ImageTest';
+// import TextInputTest from './src/TextInputTest';
+// import TouchableTest from './src/touchableTest';
+// import ScrollViewTest from './src/ScrollViewTest';
+// import FlatListDemo from './src/FlatListDemo';
 import {NavigationContainer} from "@react-navigation/native"
-import StackNavigationTest from './src/StackNavigationTest';
+import Home from './Screens/Home';
+//import StackNavigationTest from './src/StackNavigationTest';
+// import BottomTabNavTest from './src/BottomTabNavTest';
 
 
 export default function App() {
@@ -29,7 +31,7 @@ export default function App() {
     // <TextInputTest></TextInputTest>
     // <ScrollViewTest></ScrollViewTest>
     <NavigationContainer>
-      <StackNavigationTest></StackNavigationTest>
+      <Home></Home>
     </NavigationContainer>
 
 
