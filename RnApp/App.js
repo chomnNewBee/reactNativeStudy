@@ -9,6 +9,10 @@ import SwitchTest from './src/SwitchTest';
 import LoadingCircle from './src/LoadingCircle';
 import ImageTest from './src/ImageTest';
 import TextInputTest from './src/TextInputTest';
+import TouchableTest from './src/touchableTest';
+import ScrollViewTest from './src/ScrollViewTest';
+import FlatListDemo from './src/FlatListDemo';
+import {NavigationContainer} from "@react-navigation/native"
 
 
 export default function App() {
@@ -21,10 +25,11 @@ export default function App() {
     //<ButtonAlert></ButtonAlert>
     //<LoadingCircle/>
     //<ImageTest></ImageTest>
-    <TextInputTest></TextInputTest>
-
-    
-    
+    // <TextInputTest></TextInputTest>
+    // <ScrollViewTest></ScrollViewTest>
+    <NavigationContainer>
+      <FlatListDemo></FlatListDemo>
+    </NavigationContainer>
 
 
     // </View>
