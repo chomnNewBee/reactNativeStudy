@@ -13,6 +13,7 @@ import TouchableTest from './src/touchableTest';
 import ScrollViewTest from './src/ScrollViewTest';
 import FlatListDemo from './src/FlatListDemo';
 import {NavigationContainer} from "@react-navigation/native"
+import StackNavigationTest from './src/StackNavigationTest';
 
 
 export default function App() {
@@ -28,7 +29,7 @@ export default function App() {
     // <TextInputTest></TextInputTest>
     // <ScrollViewTest></ScrollViewTest>
     <NavigationContainer>
-      <FlatListDemo></FlatListDemo>
+      <StackNavigationTest></StackNavigationTest>
     </NavigationContainer>
 
 
