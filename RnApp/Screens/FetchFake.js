@@ -3,18 +3,58 @@ import React from 'react'
 const foodCatas = [
     {
         id:1,
-        CataName:"坚果类",
-        imageSrc:"sfsa"
+        CataName:"Main Food",
+        imageSrc:require("../assets/Home/mainfood.jpg")
     },
     {
         id:2,
-        CataName:"饮料类",
-        imageSrc:"sfsa"
+        CataName:"Egg",
+        imageSrc:require("../assets/Home/eggs.png")
     },
     {
         id:3,
-        CataName:"主食",
-        imageSrc:"sfsa"
+        CataName:"Bean",
+        imageSrc:require("../assets/Home/bean.jpg")
+    },
+    {
+        id:4,
+        CataName:"Cereal",
+        imageSrc:require("../assets/Home/cereal.jpg")
+    },
+    {
+        id:5,
+        CataName:"Fruit",
+        imageSrc:require("../assets/Home/fruit.jpg")
+    },
+    {
+        id:6,
+        CataName:"Meat",
+        imageSrc:require("../assets/Home/meat.jpg")
+    },
+    {
+        id:7,
+        CataName:"Mushroom",
+        imageSrc:require("../assets/Home/mushroom.jpg")
+    },
+    {
+        id:8,
+        CataName:"Nut",
+        imageSrc:require("../assets/Home/nut.jpg")
+    },
+    {
+        id:9,
+        CataName:"Oil",
+        imageSrc:require("../assets/Home/oil.jpg")
+    },
+    {
+        id:10,
+        CataName:"Sauce",
+        imageSrc:require("../assets/Home/sauce.png")
+    },
+    {
+        id:11,
+        CataName:"Vegetable",
+        imageSrc:require("../assets/Home/vegetable.jpg")
     }
 ]
 //this is the function to simulate fetch,because Android 9 and upper versions don't support http request.
