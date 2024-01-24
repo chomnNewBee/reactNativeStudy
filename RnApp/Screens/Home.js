@@ -2,6 +2,7 @@ import { Dimensions, FlatList, Image, StatusBar, StyleSheet, Text, TextInput, Vi
 import React from 'react'
 import { FetchFake } from './FetchFake'
 import { screenWidth,screenHeight } from '../CommonFunc/ScreenSize'
+
 const itemSize = screenWidth/3 - 30
 export default function Home() {
     const [foodCatas,SetFoodCatas] = React.useState(null)

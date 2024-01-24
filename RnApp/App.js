@@ -1,37 +1,53 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Image, StyleSheet} from 'react-native';
 import React from "react";
-// import { FlexBoxScreen } from './src/flexboxExercise';
-// import DimentionsExercise from './src/dimentionsExercise';
-// import ButtonAlert from './src/Button-Alert';
-//import StatusBarTest from './src/StatusBarTest.js';
-// import SwitchTest from './src/SwitchTest';
-// import LoadingCircle from './src/LoadingCircle';
-// import ImageTest from './src/ImageTest';
-// import TextInputTest from './src/TextInputTest';
-// import TouchableTest from './src/touchableTest';
-// import ScrollViewTest from './src/ScrollViewTest';
-// import FlatListDemo from './src/FlatListDemo';
 import {NavigationContainer} from "@react-navigation/native"
 import Home from './Screens/Home';
-//import StackNavigationTest from './src/StackNavigationTest';
-// import BottomTabNavTest from './src/BottomTabNavTest';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HotList from './Screens/HotList';
 
 
 export default function App() {
+  const tab = createBottomTabNavigator()
+  const HandleScreenOption = ({route})=>{
+    return {
+      tabBarIcon:({focused,size,color})=>{
+        let icon
+        if(route.name === "Home"){
+          if(focused){
+            icon = require("./assets/Icons/home.png")
+          }
+          else{
+            icon = require("./assets/Icons/home-outline.png")
+          }
+        }
+        else if(route.name === "HotList"){
+          if(focused){
+            icon = require("./assets/Icons/list.png")
+          }
+          else{
+            icon = require("./assets/Icons/list-outline.png")
+          }
+        }
+        return <Image style={{width:size,height:size,tintColor:color}} source={icon}></Image>
+      }
+    }
+  }
+
   return (
-    // <View style={styles.container}>
-    //   <Text style={styles.color}>HelloReact Native</Text>
-    //   <Text style = {{fontSize:30}}>hello 233</Text>
-    //   <TextInput style={{backgroundColor:'#1f1'}}>122</TextInput>
-    //<DimentionsExercise/>
-    //<ButtonAlert></ButtonAlert>
-    //<LoadingCircle/>
-    //<ImageTest></ImageTest>
-    // <TextInputTest></TextInputTest>
-    // <ScrollViewTest></ScrollViewTest>
+    
     <NavigationContainer>
-      <Home></Home>
+      <tab.Navigator 
+      screenOptions={HandleScreenOption}>
+        <tab.Screen
+        name='Home' 
+        component={Home}
+        options={{header:()=>{}}}>
+        </tab.Screen>
+        <tab.Screen 
+        name='HotList' 
+        component={HotList}>
+        </tab.Screen>
+      </tab.Navigator>
     </NavigationContainer>
 
 
