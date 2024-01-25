@@ -3,7 +3,7 @@ import React from "react";
 import {NavigationContainer} from "@react-navigation/native"
 import Home from './Screens/Home';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HotList from './Screens/HotList';
+import HotList from './Screens/HotList'
 
 
 export default function App() {
@@ -22,6 +22,7 @@ export default function App() {
         }
         else if(route.name === "HotList"){
           if(focused){
+            //HotList.HandleCataParam(route)
             icon = require("./assets/Icons/list.png")
           }
           else{
@@ -45,7 +46,8 @@ export default function App() {
         </tab.Screen>
         <tab.Screen 
         name='HotList' 
-        component={HotList}>
+        component={HotList}
+        options={{header:()=>{}}}>
         </tab.Screen>
       </tab.Navigator>
     </NavigationContainer>

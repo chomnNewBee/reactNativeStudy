@@ -1,10 +1,10 @@
-import { Dimensions, FlatList, Image, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Dimensions, FlatList, Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { FetchFake } from './FetchFake'
 import { screenWidth,screenHeight } from '../CommonFunc/ScreenSize'
 
 const itemSize = screenWidth/3 - 30
-export default function Home() {
+export default function Home({navigation}) {
     const [foodCatas,SetFoodCatas] = React.useState(null)
     React.useEffect(()=>{
         FetchFake("foodCata",(s)=>{
@@ -14,11 +14,17 @@ export default function Home() {
         
     },[])
 
+    const HandleCataPress = (CataId) =>{
+        navigation.navigate('HotList',{id:CataId})
+    }
+
     const HandleFoodRender = ({item,index})=>{
         return(
             <View style={styles.flatItemStyle}>
+                <TouchableOpacity onPress={()=>HandleCataPress(item.id)}>
                 <Image style={styles.ImageStyle} source={item.imageSrc}></Image>
                 <Text style={styles.TextStyle}>{item.CataName}</Text>
+                </TouchableOpacity>
             </View>
         )
     }
