@@ -2,7 +2,7 @@ import { ActivityIndicator, FlatList, Image, StatusBar, StyleSheet, Text, View }
 import React from 'react'
 import { FetchFoodList } from './FetchFake'
 import { screenHeight, screenWidth } from '../CommonFunc/ScreenSize'
-const ImageWidth = screenWidth/8
+const ImageWidth = screenWidth/5
 
 export default function HotList({route}) {
   const [id,SetId] = React.useState(1)
@@ -14,18 +14,25 @@ export default function HotList({route}) {
   //otherwise,this 
   //console.log(route)
   React.useEffect(()=>{
-    if(typeof(route.params) != 'undefined'){
-      //console.log("useeffect")
-      SetId(route.params.id)
+    //if we first enter hotlist page without pressing button in home
+    //we set id to 1 defaultly
+    let id = typeof(route.params) ==='undefined'? 1:route.params.id
+    SetId(id)
       //console.log(route.params.id)
       SetLoading(true)
-      FetchFoodList(route.params.id,(list)=>{
+      FetchFoodList(id,(list)=>{
           
           SetFoodList(list)
           SetLoading(false)
       })
-    }
-    //here
+    
+    
+    //here,must add route into dependency list
+    //when route change,we call this useEffect
+    //otherwise,when first render finished,we will call effect
+    //and call UseState HOOk, this whole component will be re-rendered
+    //so this useEffect will be called again ,and so on.
+    //so we will enter a infinit loop
   },[route])
 
   const handleRenderItem = ({item})=>{

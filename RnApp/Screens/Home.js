@@ -4,12 +4,15 @@ import { FetchFake } from './FetchFake'
 import { screenWidth,screenHeight } from '../CommonFunc/ScreenSize'
 
 const itemSize = screenWidth/3 - 30
+var cache = []
 export default function Home({navigation}) {
-    const [foodCatas,SetFoodCatas] = React.useState(null)
+    const [foodCatas,SetFoodCatas] = React.useState([])
+    const [inputStr,SetInputStr] = React.useState('')
     React.useEffect(()=>{
         FetchFake("foodCata",(s)=>{
             //console.log(s)
             SetFoodCatas(s)
+            cache = s
         }) 
         
     },[])
@@ -28,11 +31,42 @@ export default function Home({navigation}) {
             </View>
         )
     }
+    const OnSearch = ()=>{
+        console.log(cache)
+        // const array = cache.map((item,index)=>{
+        //     if(item.CataName.includes(inputStr)){
+        //         console.log(item.CataName)
+        //         return item
+        //     }
+        //     return
+            //console.log(item.CataName)
+        // })
+        var array = []
+        cache.forEach((item,index)=>{
+            if(item.CataName.includes(inputStr)){
+                console.log(item.CataName)
+                array.push(item)
+            }
+        })
+        console.log(array)
+        SetFoodCatas(array)
+    }
+    const OnInputChage = (str)=>{
+        SetInputStr(str)
+        if(str === ""){
+            SetFoodCatas(cache)
+        }
+    }
     
   return (
     <View>
       <Image style={styles.backImage} source={require('../assets/Home/homeBack.jpg')}></Image>
-      <TextInput style={styles.InputStyle} placeholder='please input search content'></TextInput>
+      <TextInput 
+      style={styles.InputStyle} 
+      placeholder='please input search content'
+      value={inputStr}
+      onChangeText={OnInputChage}
+      onEndEditing={OnSearch}></TextInput>
       <View style={styles.contentArea}>
         <FlatList numColumns={3} data={foodCatas} renderItem={HandleFoodRender} style={styles.ListStyle} 
         keyExtractor={(item,index)=> item.id}></FlatList>
