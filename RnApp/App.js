@@ -4,6 +4,8 @@ import {NavigationContainer} from "@react-navigation/native"
 import Home from './Screens/Home';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HotList from './Screens/HotList'
+import SearchFind from './Screens/SearchFind';
+import Profile from './Screens/Profile';
 
 
 export default function App() {
@@ -29,6 +31,24 @@ export default function App() {
             icon = require("./assets/Icons/list-outline.png")
           }
         }
+        else if(route.name === "Search"){
+          if(focused){
+            //HotList.HandleCataParam(route)
+            icon = require("./assets/Icons/search.png")
+          }
+          else{
+            icon = require("./assets/Icons/search-outline.png")
+          }
+        }
+        else if(route.name === "Profile"){
+          if(focused){
+            //HotList.HandleCataParam(route)
+            icon = require("./assets/Icons/person.png")
+          }
+          else{
+            icon = require("./assets/Icons/person-outline.png")
+          }
+        }
         return <Image style={{width:size,height:size,tintColor:color}} source={icon}></Image>
       }
     }
@@ -49,6 +69,14 @@ export default function App() {
         component={HotList}
         options={{header:()=>{}}}>
         </tab.Screen>
+        <tab.Screen
+        name='Search'
+        component={SearchFind}
+        options={{header:()=>{}}}></tab.Screen>
+        <tab.Screen
+        name='Profile'
+        component={Profile}
+        options={{header:()=>{}}}></tab.Screen>
       </tab.Navigator>
     </NavigationContainer>
 
