@@ -1,8 +1,9 @@
-import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Button, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { screenWidth } from '../CommonFunc/ScreenSize'
 import Line from '../CommonFunc/Line'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { useNavigation } from '@react-navigation/native'
 
 const stack = createNativeStackNavigator()
 export default function Profile() {
@@ -20,21 +21,53 @@ export default function Profile() {
     
   )
 }
-function EditNickName(){
+function EditNickName({navigation,route}){
+    //console.log(navigation)
+    const [nickname,setNickname] = React.useState()
+    React.useLayoutEffect(()=>{
+        navigation.setOptions({
+            headerRight:()=>{
+                return(
+                <TouchableOpacity onPress={handleSave}>
+                    <View style={styles.SaveButton}>
+                        <Text style={{marginTop:15}}>Save</Text>
+                    </View>
+                </TouchableOpacity>
+                )
+            }
+        })
+    },[navigation,nickname])
+    const handleSave = ()=>{
+        console.log(nickname)
+        navigation.navigate('profile',{nickname:nickname})
+    }
     return(
-        <View>
-            <Text>This is edit page</Text>
+        <View style={styles.editStyle}>
+            <TextInput 
+            placeholder='Input new nickname'
+            value={nickname}
+            onChangeText={(str)=>{
+                setNickname(str)
+                console.log(nickname)
+            }}/>
+            <Line height={2} backgroundColor='#208bff'></Line>
         </View>
     )
 }
 function ProfilePage({navigation,route}){
+    const [nickname,setNickname] = React.useState("defalut")
+    React.useEffect(()=>{
+        const {nickname} = route.params
+        if(typeof(nickname) != "undefined")
+            setNickname(nickname)
+    },[route])
     return(
         <View style={styles.container}>
         <TouchableOpacity onPress={()=> navigation.navigate('EditNickName')}>
         <View style={styles.itemStyle}>
             <Text style={styles.textTitle}>Nickname</Text>
             <View style={styles.dynamicContainer}>
-                <Text style={styles.textDynamic}>default name</Text>
+                <Text style={styles.textDynamic}>{nickname}</Text>
                 <Text style={styles.Arrow}>{">"}</Text>
             </View>
         </View>
@@ -124,6 +157,16 @@ const styles = StyleSheet.create({
         flexDirection:"row",
         justifyContent:"flex-end",
         alignItems:"center"
+    },
+    editStyle:{
+        flex:1,
+        marginTop:10,
+        marginLeft:10,
+        marginRight:10
+    },
+    SaveButton:{
+        flex:1,
+        justifyContent:"center"
     }
     
 })
