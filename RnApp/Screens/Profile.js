@@ -6,16 +6,17 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useNavigation } from '@react-navigation/native'
 import storage, { ReadStorage, WriteStorage } from '../CommonFunc/storage'
 import DatePicker from 'react-native-modern-datepicker';
+import RNPickerSelect from 'react-native-picker-select';
 
 const stack = createNativeStackNavigator()
 export default function Profile() {
-    const [date,setDate] = React.useState('')
+    
     return (
         <stack.Navigator>
             <stack.Screen
             name="profile"
             component={ProfilePage}
-            options={{title:"Profile",params:{data:date}}}/>
+            options={{title:"Profile"}}/>
             <stack.Screen
             name='EditNickName'
             component={EditNickName}
@@ -138,6 +139,8 @@ function ProfilePage({navigation,route}){
     const [display,SetDisplay] =React.useState('none')
     const [personalStatus,SetPersonalStatus] = React.useState("Unkonwn")
     const [school_,setSchool] = React.useState("Unkonwn")
+    const [dispalyGender,setDisplayGender] = React.useState('none')
+    const [gender,setGender] = React.useState('Secret')
     React.useEffect(()=>{
         if(typeof(route.params) != "undefined"){
             const {nickname,personalStatus,school} = route.params
@@ -164,6 +167,9 @@ function ProfilePage({navigation,route}){
         ReadStorage("school").then((ret)=>{
             setSchool(ret)
         })
+        ReadStorage('gender').then((ret)=>{
+            setGender(ret)
+        })
     },[])
     const handleBirthdayPress = ()=>{
         SetDisplay("flex")
@@ -171,6 +177,11 @@ function ProfilePage({navigation,route}){
     const OnSelectDate = ()=>{
         WriteStorage("birthday",pickDate)
         SetDisplay("none")
+    }
+    const handleGenderSelect = (gender)=>{
+        WriteStorage('gender',gender)
+        setGender(gender)
+        setDisplayGender('none')
     }
     return(
         <View style={styles.container}>
@@ -185,11 +196,11 @@ function ProfilePage({navigation,route}){
         </TouchableOpacity>
 
         <Line></Line>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=> setDisplayGender("flex")}>
         <View style={styles.itemStyle}>
             <Text style={styles.textTitle}>Gender</Text>
             <View style={styles.dynamicContainer}>
-                <Text style={styles.textDynamic}>Secret</Text>
+                <Text style={styles.textDynamic}>{gender}</Text>
                 <Text style={styles.Arrow}>{">"}</Text>
             </View>
         </View>
@@ -239,6 +250,22 @@ function ProfilePage({navigation,route}){
                 onPress={OnSelectDate}/>
             </View>
         </View>
+        </View>
+
+
+        <View style={[styles.GenderPickerContainer,{display:dispalyGender}]}> 
+            <View style={styles.genderForm}>
+                <Text style={[styles.genderTitle,{fontSize:20}]}>Gender Select</Text>
+                <TouchableOpacity onPress={()=>handleGenderSelect('Male')}>
+                    <Text style={styles.genderTitle}>Male</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>handleGenderSelect('Female')}>
+                    <Text style={styles.genderTitle}>Female</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>handleGenderSelect('Secret')}>
+                    <Text style={styles.genderTitle}>Secret</Text>
+                </TouchableOpacity>
+            </View>
         </View>
 
         
@@ -307,8 +334,26 @@ const styles = StyleSheet.create({
         marginLeft:20,
         marginRight:20,
         marginBottom:20
+    },
+    GenderPickerContainer:{
+        position:"absolute",
+        width:screenWidth,
+        height:screenHeight,
+        top:0,
+        left:0,
+        backgroundColor:"#c0c0c0c0"
 
-
+    },
+    genderForm:{
+        backgroundColor:"white",
+        width:200,
+        left:(screenWidth-200)/2,
+        top:(screenHeight-250)/2
+    },
+    genderTitle:{
+        textAlign:"center",
+        marginTop:10,
+        marginBottom:10
     }
     
 })
